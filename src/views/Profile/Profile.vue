@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col text-white">
-    <div class="flex flex-row items-center justify-center pt-4 px-4">
+    <div class="flex flex-row items-center justify-center px-4 pt-4">
       <div class="absolute left-0 ml-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
+          class="w-5 h-5"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -18,9 +18,9 @@
       <div class="flex-1 font-bold">{{ user.username }}</div>
     </div>
 
-    <div class="flex flex-row mx-4 mt-4 items-center">
-      <div class="rounded-full h-16 w-16 bg-white mr-4"></div>
-      <div class="flex-1 flex flex-row justify-center">
+    <div class="flex flex-row items-center mx-4 mt-4">
+      <div class="w-16 h-16 mr-4 bg-white rounded-full"></div>
+      <div class="flex flex-row justify-center flex-1">
         <div class="mx-4">
           <div class="font-bold">{{ user.reviews }}</div>
           <div class="text-sm">Reviews</div>
@@ -39,13 +39,13 @@
       <div class="font-semibold">{{ user.name }}</div>
       <div class="font-light">{{ user.bio }}</div>
     </div>
-    <button class="bg-green-500 mx-4 rounded py-1 mt-2">Follow</button>
+    <button class="py-1 mx-4 mt-2 bg-green-500 rounded">Follow</button>
     <div class="mt-8 ml-4">
       <div class="flex flex-row overflow-scroll ">
         <div
           v-for="(movie, index) in user.topShelf"
           :key="index"
-          class="w-24 h-32 mr-2 border rounded relative flex-shrink-0"
+          class="relative flex-shrink-0 w-24 h-32 mr-2 border rounded"
         >
           <div>
             <div
@@ -56,14 +56,14 @@
           </div>
         </div>
       </div>
-      <div class="text-lg text-left font-bold">Top Shelf</div>
+      <div class="text-lg font-bold text-left">Top Shelf</div>
     </div>
     <div class="mt-4 ml-4">
       <div class="flex flex-row overflow-scroll">
         <div
           v-for="(movie, index) in user.movies"
           :key="index"
-          class="w-24 h-32 mr-2 border rounded relative flex-shrink-0"
+          class="relative flex-shrink-0 w-24 h-32 mr-2 border rounded"
         >
           <div
             class="absolute top-0 right-0 p-0.5 bg-gray-800 bg-opacity-50 border-l border-b rounded-bl"
@@ -72,13 +72,13 @@
           </div>
         </div>
         <div
-          class="self-center flex-shrink-0 text-lg font-bold flex flex-col items-center p-2 mr-2"
+          class="flex flex-col items-center self-center flex-shrink-0 p-2 mr-2 text-lg font-bold"
         >
           <div>See More</div>
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              class="w-5 h-5"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -91,14 +91,14 @@
           </div>
         </div>
       </div>
-      <div class="text-lg text-left font-bold">Movies</div>
+      <div class="text-lg font-bold text-left">Movies</div>
     </div>
     <div class="mt-4 ml-4">
       <div class="flex flex-row overflow-scroll">
         <div
           v-for="(show, index) in user.shows"
           :key="index"
-          class="w-24 h-32 mr-2 border rounded relative flex-shrink-0"
+          class="relative flex-shrink-0 w-24 h-32 mr-2 border rounded"
         >
           <div
             class="absolute top-0 right-0 p-0.5 bg-gray-800 bg-opacity-50 border-l border-b rounded-bl"
@@ -107,13 +107,13 @@
           </div>
         </div>
         <div
-          class="self-center flex-shrink-0 text-lg font-bold flex flex-col items-center p-2 mr-2"
+          class="flex flex-col items-center self-center flex-shrink-0 p-2 mr-2 text-lg font-bold"
         >
           <div>See More</div>
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              class="w-5 h-5"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -126,7 +126,7 @@
           </div>
         </div>
       </div>
-      <div class="text-lg text-left font-bold">TV Shows</div>
+      <div class="text-lg font-bold text-left">TV Shows</div>
     </div>
   </div>
 </template>
