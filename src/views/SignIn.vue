@@ -146,15 +146,18 @@ export default {
   },
   methods: {
     signIn() {
-      const requestOptions = {
-        method: "POST",
-        headers : { "Content-Type": "application/json"},
-        body: JSON.stringify({task_type: this.username, description: this.password, deadline: "test"}),
-        
-      };
-      fetch("https://better-kritic.herokuapp.com/api/task_data/", requestOptions)
-      .then(response => response.json())
-      .then(data => console.log(data));
+      localStorage.setItem('bk-authenticated', true);
+
+      // const requestOptions = {
+      //   method: "POST",
+      //   headers : { "Content-Type": "application/json"},
+      //   body: JSON.stringify({task_type: this.username, description: this.password, deadline: "test"}),
+      // };
+      // fetch("https://better-kritic.herokuapp.com/api/task_data/", requestOptions)
+      // .then(response => response.json())
+      // .then(data => console.log(data));
+
+      this.$router.push('/feed');
     }
   }
 }

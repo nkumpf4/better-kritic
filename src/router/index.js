@@ -20,26 +20,60 @@ const routes = [
   {
     path: '/feed',
     name: 'Feed',
-    component: () => import('../views/Feed/Feed.vue')
+    component: () => import('../views/Feed/Feed.vue'),
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
-    path: '/profile',
+    path: '/profile/:name',
     name: 'Profile',
-    component: () => import('../views/Profile/Profile.vue')
+    component: () => import('../views/Profile/Profile.vue'),
+    meta: {
+      requiresAuth: true,
+    }
+  },
+  {
+    path: '/discover',
+    name: 'Discover',
+    component: () => import('../views/Discover/Discover.vue'),
+    meta: {
+      requiresAuth: true,
+    }
+  },
+  {
+    path: '/movie',
+    name: 'Movie',
+    component: () => import('../views/Movie/Movie.vue'),
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    meta: {
+      requiresAuth: true,
+    }
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach(async (to, from, next) => {
+  if (to.meta.requiresAuth) {
+    if (localStorage.getItem('bk-authenticated')) {
+      next();
+    } else {
+      next('/signin')
+    }
+  } else {
+    next();
+  }
 })
 
 export default router

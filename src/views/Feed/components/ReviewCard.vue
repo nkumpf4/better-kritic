@@ -5,22 +5,16 @@
         <div class="w-6 h-6 mr-2 overflow-hidden bg-white rounded-full">
           <img src="" alt="" />
         </div>
-        <div class="flex-1 text-sm font-semibold text-left text-white">
+        <router-link class="flex-1 text-sm font-semibold text-left text-white" :to="'/profile/' + review.critic.name">
           {{ review.critic.name }}
-        </div>
+        </router-link>
       </div>
       <div class="mb-2 font-bold text-center text-white">
         {{ review.movie.title }}
       </div>
       <div class="flex flex-row mb-4">
         <div class="relative w-1/2 pr-2">
-          <!-- <div
-          class="absolute right-0 p-3 mr-2 text-3xl font-bold text-white bg-gray-800 bg-opacity-75 rounded-tr rounded-bl top-o"
-        >
-          {{ averageRating(review.rating) }}
-        </div> -->
           <div class="bg-white rounded h-72"></div>
-          <!-- <img :src="review.movie.img" class="rounded max-h-96" alt="" /> -->
         </div>
         <div class="flex flex-col justify-between w-1/2 pl-2 text-white">
           <div class="text-left">

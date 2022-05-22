@@ -1,132 +1,116 @@
 <template>
-  <div class="flex flex-col text-white">
-    <div class="flex flex-row items-center justify-center px-4 pt-4">
-      <div class="absolute left-0 ml-2">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-5 h-5"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-            clip-rule="evenodd"
-          />
-        </svg>
+  <div
+    class="relative flex flex-col justify-center text-white infinite-bg-gradient"
+  >
+    <div class="flex flex-row items-center justify-start h-12 ">
+      <div @click="$router.back()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6 mx-3 my-3"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
       </div>
-      <div class="flex-1 font-bold">{{ user.username }}</div>
+    </div>
+    <div
+      class="flex flex-col items-center justify-start px-4 pb-4 mt-12 bg-white bg-opacity-10 rounded-2xl"
+    >
+      <div class="relative h-12">
+        <div class="relative w-24 h-24 overflow-hidden -top-12 rounded-xl">
+          <img class="w-full h-full" src="@/assets/profiles/profile.jpg" />
+        </div>
+      </div>
+      <div class="my-4 text-3xl font-semibold">{{user.name}}</div>
+      <div class="flex flex-row mt-2">
+        <div class="mx-2">
+          <div class="font-bold">{{ user.followers }}</div>
+          <div class="text-sm font-light">Followers</div>
+        </div>
+        <div class="mx-2">
+          <div class="font-bold">{{ user.following }}</div>
+          <div class="text-sm font-light">Following</div>
+        </div>
+      </div>
+      <button class="w-24 p-2 mt-6 bg-green-500 rounded-lg ">Follow</button>
+      <div class="my-4 text-sm">
+        Hello my name is {{user.firstName}}, and I love watching movies.
+      </div>
     </div>
 
-    <div class="flex flex-row items-center mx-4 mt-4">
-      <div class="w-16 h-16 mr-4 bg-white rounded-full"></div>
-      <div class="flex flex-row justify-center flex-1">
-        <div class="mx-4">
-          <div class="font-bold">{{ user.reviews }}</div>
-          <div class="text-sm">Reviews</div>
-        </div>
-        <div class="mx-4">
-          <div class="font-bold">{{ user.followers }}</div>
-          <div class="text-sm">Followers</div>
-        </div>
-        <div class="mx-4">
-          <div class="font-bold">{{ user.following }}</div>
-          <div class="text-sm">Following</div>
-        </div>
-      </div>
-    </div>
-    <div class="flex flex-col items-start mx-4 mt-2 text-sm">
-      <div class="font-semibold">{{ user.name }}</div>
-      <div class="font-light">{{ user.bio }}</div>
-    </div>
-    <button class="py-1 mx-4 mt-2 bg-green-500 rounded">Follow</button>
-    <div class="mt-8 ml-4">
-      <div class="flex flex-row overflow-scroll ">
+    <div class="flex flex-col mt-8 mb-24">
+      <div class="flex flex-row flex-start">
         <div
-          v-for="(movie, index) in user.topShelf"
-          :key="index"
-          class="relative flex-shrink-0 w-24 h-32 mr-2 border rounded"
+          class="p-1 mr-2 text-lg uppercase transform rotate-180 bg-white rounded-l-lg bg-opacity-10 orientation-sideways"
         >
-          <div>
-            <div
-              class="absolute top-0 right-0 p-0.5 bg-gray-800 bg-opacity-50 border-l border-b rounded-bl"
-            >
-              {{ movie.rating }}
+          <span class="font-bold text-green-400">TOP</span> SHELF
+        </div>
+        <div class="flex flex-row overflow-scroll ">
+          <div
+            v-for="(movie, index) in user.topShelf"
+            :key="index"
+            class="relative flex-shrink-0 w-24 h-32 mr-2 border rounded"
+          >
+            <div>
+              <div
+                class="absolute top-0 right-0 p-0.5 bg-gray-800 bg-opacity-50 border-l border-b rounded-bl"
+              >
+                {{ movie.rating }}
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="text-lg font-bold text-left">Top Shelf</div>
-    </div>
-    <div class="mt-4 ml-4">
-      <div class="flex flex-row overflow-scroll">
+      <div class="flex flex-row mt-4 flex-start">
         <div
-          v-for="(movie, index) in user.movies"
-          :key="index"
-          class="relative flex-shrink-0 w-24 h-32 mr-2 border rounded"
+          class="p-1 mr-2 text-lg font-bold uppercase transform rotate-180 bg-white rounded-l-lg bg-opacity-10 orientation-sideways"
         >
-          <div
-            class="absolute top-0 right-0 p-0.5 bg-gray-800 bg-opacity-50 border-l border-b rounded-bl"
-          >
-            {{ movie.rating }}
-          </div>
+          MOVIES
         </div>
-        <div
-          class="flex flex-col items-center self-center flex-shrink-0 p-2 mr-2 text-lg font-bold"
-        >
-          <div>See More</div>
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
+        <div class="flex flex-row overflow-scroll ">
+          <div
+            v-for="(movie, index) in user.movies"
+            :key="index"
+            class="relative flex-shrink-0 w-24 h-32 mr-2 border rounded"
+          >
+            <div>
+              <div
+                class="absolute top-0 right-0 p-0.5 bg-gray-800 bg-opacity-50 border-l border-b rounded-bl"
+              >
+                {{ movie.rating }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="text-lg font-bold text-left">Movies</div>
-    </div>
-    <div class="mt-4 ml-4">
-      <div class="flex flex-row overflow-scroll">
+
+      <div class="flex flex-row mt-4 flex-start">
         <div
-          v-for="(show, index) in user.shows"
-          :key="index"
-          class="relative flex-shrink-0 w-24 h-32 mr-2 border rounded"
+          class="p-1 mr-2 text-lg uppercase transform rotate-180 bg-white rounded-l-lg bg-opacity-10 orientation-sideways"
         >
-          <div
-            class="absolute top-0 right-0 p-0.5 bg-gray-800 bg-opacity-50 border-l border-b rounded-bl"
-          >
-            {{ show.rating }}
-          </div>
+          <span class="font-bold text-green-400">TOP</span> SHELF
         </div>
-        <div
-          class="flex flex-col items-center self-center flex-shrink-0 p-2 mr-2 text-lg font-bold"
-        >
-          <div>See More</div>
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
+        <div class="flex flex-row overflow-scroll ">
+          <div
+            v-for="(movie, index) in user.topShelf"
+            :key="index"
+            class="relative flex-shrink-0 w-24 h-32 mr-2 border rounded"
+          >
+            <div>
+              <div
+                class="absolute top-0 right-0 p-0.5 bg-gray-800 bg-opacity-50 border-l border-b rounded-bl"
+              >
+                {{ movie.rating }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="text-lg font-bold text-left">TV Shows</div>
     </div>
   </div>
 </template>
@@ -137,7 +121,9 @@ export default {
     return {
       user: {
         username: "nkumpf4",
-        name: "Noah Kumpf",
+        name: "John Brown",
+        firstName: "John",
+        lastName: "Brown",
         bio: "I like turtles",
         reviews: 27,
         followers: 500,
@@ -211,5 +197,29 @@ export default {
       },
     };
   },
+  created() {
+    this.user.name = this.$route.params.name;
+    this.user.firstName = this.user.name.split(' ')[0];
+    this.user.lastName = this.user.name.split(' ')[1];
+  }
 };
 </script>
+
+<style scoped>
+.infinite-bg-gradient {
+  background: rgb(17, 24, 39);
+  background: linear-gradient(
+    180deg,
+    rgba(17, 24, 39, 1) 0%,
+    rgba(6, 78, 59, 1) 33%,
+    rgb(9, 96, 117) 66%,
+    rgba(17, 24, 39, 1) 100%
+  );
+  background-size: 100% 400vh;
+}
+
+.orientation-sideways {
+  text-orientation: sideways-right;
+  writing-mode: vertical-lr;
+}
+</style>
